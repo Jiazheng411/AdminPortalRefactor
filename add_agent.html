@@ -1,0 +1,108 @@
+
+
+<title>Add_Agent</title>
+<meta charset="utf-8">
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+<div style="height:400px;width:550px;margin:50px auto;margin-left:auto;border:solid 1px;background: rgb(246, 246, 253);">
+    　　<div style="margin-left: 45px;">
+        　　<h1>Adding agents</h1>
+            <h1>Agent information</h1>
+    　　　　<form action="#" role="form" method="post">
+                    <p>firstname</p>
+                    <input type="text" id="firstname" name="firstname" />
+                    <p>lastname</p>
+                    <input type="text" id="lastname" name="lastname" />
+                    <p>email address</p>
+                    <input type="text" id="email" name="email" onkeyup=""/>
+                    <p>password</p>
+                    <input type="password" id="password" name="password" />
+                    <p>Languages and Skills</p>
+                    <p>
+                        <input type="checkbox" id="chinese">
+                        <label for="chinese">Chinese</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="english">
+                        <label for="english">English</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="malay">
+                        <label for="malay">Malay</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="skill1">
+                        <label for="skill1">Insurance</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="skill2">
+                        <label for="skill2">Fraud</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="skill3">
+                        <label for="skill2">Bank Statement</label>
+                    </p>
+                    <div style="margin-top:30px;margin-left:125px;">
+            　　　　　　　　<input type="button" onclick="add_agent();" value="LOGIN">
+        　　　　　　</div>
+            </form>
+    　　</div>
+    </div>
+
+
+<script>function add_agent(){
+    console.log("adding agents");
+    var firstname = $('#firstname').val();
+    var lastname = $('#lastname').val();
+    var chinese = 0;
+    var english = 0;
+    var malay = 0;
+    var skill1 = 0;
+    var skill2 = 0;
+    var skill3 = 0;
+    if($("#chinese").is(':checked')){
+        chinese = 1;
+    }
+    if($("#english").is(':checked')){
+        english = 1;
+    }
+    if($("#malay").is(':checked')){
+        malay = 1;
+    }
+    if($("#skill1").is(':checked')){
+        skill1 = 1;
+    }
+    if($("#skill2").is(':checked')){
+        skill2 = 1;
+    }
+    if($("#skill3").is(':checked')){
+        skill3 = 1;
+    }
+    data = {"firstname": firstname,
+            "lastname": lastname, 
+            "email": email,
+            "password": password,
+            "chinese": chinese, 
+            "english": english, 
+            "malay": malay,
+            "skill1": skill1, 
+            "skill2": skill2,
+            "skill3": skill3};
+
+    $.ajax({
+        url:'add_agent',
+        type:'POST',
+        data:data,
+        success:function(data,status){
+            if(status == 'success'){
+                location.href='home';
+            }
+        },
+        error:function(data,status,e){
+            if(status == "error"){
+                location.href='add_agent';
+                }
+            }
+        });
+    }
+</script>

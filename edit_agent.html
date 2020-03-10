@@ -1,0 +1,75 @@
+
+<title>Add_Agent</title>
+<meta charset="utf-8">
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+<div style="height:400px;width:550px;margin:50px auto;margin-left:auto;border:solid 1px;background: rgb(246, 246, 253);">
+    　　<div style="margin-left: 45px;">
+        　　<h1>Adding agents</h1>
+            <h1>Agent information</h1>
+    　　　　<form action="#" role="form" method="post">
+                    <p>name</p>
+                    <input type="text" id="agentname" name="agentname" />
+                    <p>Languages</p>
+                    <p>
+                        <input type="checkbox" id="chinese">
+                        <label for="chinese">Chinese</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="english">
+                        <label for="english">English</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="skill1">
+                        <label for="skill1">Skill1</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="skill2">
+                        <label for="skill2">Skill2</label>
+                    </p>
+                    <div style="margin-top:30px;margin-left:125px;">
+            　　　　　　　　<input type="button" onclick="edit_agent();" value="SAVE">
+        　　　　　　</div>
+            </form>
+    　　</div>
+    </div>
+
+
+    <script>function edit_agent(){
+        console.log("adding agents");
+        var name = $('#agentname').val();
+        var chinese = 0;
+        var english = 0;
+        var skill1 = 0;
+        var skill2 = 0;
+        if($("#chinese").is(':checked')){
+            chinese = 1;
+        }
+        if($("#english").is(':checked')){
+            english = 1;
+        }
+        if($("#skill1").is(':checked')){
+            skill1 = 1;
+        }
+        if($("#skill2").is(':checked')){
+            skill2 = 1;
+        }
+        data = {"name": name, "chinese": chinese, "english": english, "skill1": skill1, "skill2": skill2};
+    
+        $.ajax({
+            url:'edit_agent',
+            type:'POST',
+            data:data,
+            success:function(data,status){
+                if(status == 'success'){
+                    location.href='view_agents';
+                }
+            },
+            error:function(data,status,e){
+                if(status == "error"){
+                    location.href='edit_agent';
+                    }
+                }
+            });
+        }
+    </script>
