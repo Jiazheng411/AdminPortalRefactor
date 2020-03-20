@@ -107,40 +107,42 @@ app.post('/add_agent',function(req,res){
     var skill1 = req.body.skill1;
     var skill2 = req.body.skill2;
     var skill3 = req.body.skill3;
-    console.log(name, chinese, english, skill1,skill2);
-    if(name!=''){
-        var options = {
-          'method': 'POST',
-          'url': 'http://10.12.214.214:3000/db/add',
-          'headers': {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-                                "rainbow_id":name,
-                                "name":name,
-                                "details":{
-                                    "languages":{
-                                        "english":english,
-                                        "chinese": chinese,
-                                        "malay": malay
-                                        },
-                                    "skills":{
-                                        "insurance":skill1,
-                                        "fraud": skill2,
-                                        "bank statement":skill3
-                                        }
-                                    }
-                                })
+    console.log(firstname,lastname,email,password, chinese, english, skill1,skill2);
+    if(firstname!=''){
+        console.log("hello updating agent")
+        // var options = {
+        //   'method': 'POST',
+        //   'url': 'http://10.12.214.214:3000/db/add',
+        //   'headers': {
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: JSON.stringify({
+        //                         "rainbow_id":name,
+        //                         "name":name,
+        //                         "details":{
+        //                             "languages":{
+        //                                 "english":english,
+        //                                 "chinese": chinese,
+        //                                 "malay": malay
+        //                                 },
+        //                             "skills":{
+        //                                 "insurance":skill1,
+        //                                 "fraud": skill2,
+        //                                 "bank statement":skill3
+        //                                 }
+        //                             }
+        //                         })
         
-        };
-        request(options, function (error, response) { 
-          if (error) {
-                res.send(404);
-                throw new Error(error);             
-          }
-          console.log(response.body);
-          res.send(200);
-        });
+        // };
+        // request(options, function (error, response) { 
+        //   if (error) {
+        //         res.send(404);
+        //         throw new Error(error);             
+        //   }
+        //   console.log(response.body);
+        //   res.send(200);
+        // });
+        res.send(200);
 
     }
     else{
