@@ -43,17 +43,19 @@
                         <label for="skill3">Bank Statement</label>
                     </p>
                     <div style="margin-top:30px;margin-left:125px;">
-            　　　　　　　　<input type="button" onclick="add_agent();" value="LOGIN">
+            　　　　　　 <input type="button" onclick="add_agent();" value="Add">
+                        <input type="button" onclick="location.href='/home';" value="Go Back to Home" />  
         　　　　　　</div>
             </form>
     　　</div>
     </div>
 
-
-<script>function add_agent(){
-    console.log("adding agents");
+<script> function add_agent(){
+    console.log("adding agent");
     var firstname = $('#firstname').val();
     var lastname = $('#lastname').val();
+    var email = $('#email').val();
+    var password = $('#password').val();
     var chinese = 0;
     var english = 0;
     var malay = 0;
@@ -78,17 +80,18 @@
     if($("#skill3").is(':checked')){
         skill3 = 1;
     }
-    data = {"firstname": firstname,
-            "lastname": lastname, 
-            "email": email,
-            "password": password,
-            "chinese": chinese, 
-            "english": english, 
-            "malay": malay,
-            "skill1": skill1, 
-            "skill2": skill2,
-            "skill3": skill3};
 
+    var data = {"firstname": firstname, 
+                "lastname": lastname, 
+                "password":password, 
+                "email": email,
+                "chinese": chinese,
+                "english": english,
+                "malay": malay,
+                "skill1": skill1,
+                "skill2": skill2,
+                "skill3": skill3
+            };
     $.ajax({
         url:'add_agent',
         type:'POST',
@@ -106,3 +109,4 @@
         });
     }
 </script>
+ 

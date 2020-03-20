@@ -1,75 +1,110 @@
 
-<title>Add_Agent</title>
+
+<title>Edit_Agent</title>
 <meta charset="utf-8">
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 
 <div style="height:400px;width:550px;margin:50px auto;margin-left:auto;border:solid 1px;background: rgb(246, 246, 253);">
     　　<div style="margin-left: 45px;">
-        　　<h1>Adding agents</h1>
+        　　<h1>Edit agent information</h1>
             <h1>Agent information</h1>
     　　　　<form action="#" role="form" method="post">
-                    <p>name</p>
-                    <input type="text" id="agentname" name="agentname" />
-                    <p>Languages</p>
+                    <p>Agent id</p>
+                    <p id="agent_id"><%= agent_id %></p>
+                    <p>firstname</p>
+                    <input type="text" id="firstname" name="firstname" value="<%= agent.firstname %>"/>
+                    <p>lastname</p>
+                    <input type="text" id="lastname" name="lastname" value="<%= agent.lastname %>"/>
+                    <p>email address</p>
+                    <input type="text" id="email" name="email" onkeyup="" value="<%= agent.email %>"/>
+                    <p>Languages and Skills</p>
                     <p>
-                        <input type="checkbox" id="chinese">
+                        <input type="checkbox" id="chinese" checked = "false">
                         <label for="chinese">Chinese</label>
                     </p>
                     <p>
-                        <input type="checkbox" id="english">
+                        <input type="checkbox" id="english" <%= agent.english %>>
                         <label for="english">English</label>
                     </p>
                     <p>
+                        <input type="checkbox" id="malay">
+                        <label for="malay">Malay</label>
+                    </p>
+                    <p>
                         <input type="checkbox" id="skill1">
-                        <label for="skill1">Skill1</label>
+                        <label for="skill1">Insurance</label>
                     </p>
                     <p>
                         <input type="checkbox" id="skill2">
-                        <label for="skill2">Skill2</label>
+                        <label for="skill2">Fraud</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="skill3">
+                        <label for="skill3">Bank Statement</label>
                     </p>
                     <div style="margin-top:30px;margin-left:125px;">
-            　　　　　　　　<input type="button" onclick="edit_agent();" value="SAVE">
+            　　　　　　　<input type="button" onclick="edit_agent();" value="Save">
+                        <input type="button" onclick="location.href='/view_agents';" value='Back' /> 
         　　　　　　</div>
             </form>
     　　</div>
     </div>
 
+<script> function edit_agent(){
+    console.log("adding agent");
+    var firstname = $('#firstname').val();
+    var lastname = $('#lastname').val();
+    var email = $('#email').val();
+    var chinese = 0;
+    var english = 0;
+    var malay = 0;
+    var skill1 = 0;
+    var skill2 = 0;
+    var skill3 = 0;
+    if($("#chinese").is(':checked')){
+        chinese = 1;
+    }
+    if($("#english").is(':checked')){
+        english = 1;
+    }
+    if($("#malay").is(':checked')){
+        malay = 1;
+    }
+    if($("#skill1").is(':checked')){
+        skill1 = 1;
+    }
+    if($("#skill2").is(':checked')){
+        skill2 = 1;
+    }
+    if($("#skill3").is(':checked')){
+        skill3 = 1;
+    }
 
-    <script>function edit_agent(){
-        console.log("adding agents");
-        var name = $('#agentname').val();
-        var chinese = 0;
-        var english = 0;
-        var skill1 = 0;
-        var skill2 = 0;
-        if($("#chinese").is(':checked')){
-            chinese = 1;
-        }
-        if($("#english").is(':checked')){
-            english = 1;
-        }
-        if($("#skill1").is(':checked')){
-            skill1 = 1;
-        }
-        if($("#skill2").is(':checked')){
-            skill2 = 1;
-        }
-        data = {"name": name, "chinese": chinese, "english": english, "skill1": skill1, "skill2": skill2};
-    
-        $.ajax({
-            url:'edit_agent',
-            type:'POST',
-            data:data,
-            success:function(data,status){
-                if(status == 'success'){
-                    location.href='view_agents';
+    var data = {"firstname": firstname, 
+                "lastname": lastname, 
+                "email": email,
+                "chinese": chinese,
+                "english": english,
+                "malay": malay,
+                "skill1": skill1,
+                "skill2": skill2,
+                "skill3": skill3
+            };
+    $.ajax({
+        url:'edit_agent',
+        type:'POST',
+        data:data,
+        success:function(data,status){
+            if(status == 'success'){
+                location.href='/view_agents';
+            }
+        },
+        error:function(data,status,e){
+            if(status == "error"){
+                location.href='edit_agent';
                 }
-            },
-            error:function(data,status,e){
-                if(status == "error"){
-                    location.href='edit_agent';
-                    }
-                }
-            });
-        }
-    </script>
+            }
+        });
+    }
+</script>
+ 

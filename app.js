@@ -93,7 +93,7 @@ app.get('/add_agent', function(req, res){
 　　　　req.session.error = "Please Login First"
 　　　　res.redirect('login');
     }
-    });
+});
 
 app.post('/add_agent',function(req,res){
     console.log("adding agent post url")
@@ -107,41 +107,10 @@ app.post('/add_agent',function(req,res){
     var skill1 = req.body.skill1;
     var skill2 = req.body.skill2;
     var skill3 = req.body.skill3;
-    console.log(firstname,lastname,email,password, chinese, english, skill1,skill2);
+    console.log(firstname,lastname,email,password,chinese,english,malay,skill1,skill2,skill3);
     if(firstname!=''){
         console.log("hello updating agent")
-        // var options = {
-        //   'method': 'POST',
-        //   'url': 'http://10.12.214.214:3000/db/add',
-        //   'headers': {
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify({
-        //                         "rainbow_id":name,
-        //                         "name":name,
-        //                         "details":{
-        //                             "languages":{
-        //                                 "english":english,
-        //                                 "chinese": chinese,
-        //                                 "malay": malay
-        //                                 },
-        //                             "skills":{
-        //                                 "insurance":skill1,
-        //                                 "fraud": skill2,
-        //                                 "bank statement":skill3
-        //                                 }
-        //                             }
-        //                         })
-        
-        // };
-        // request(options, function (error, response) { 
-        //   if (error) {
-        //         res.send(404);
-        //         throw new Error(error);             
-        //   }
-        //   console.log(response.body);
-        //   res.send(200);
-        // });
+        // TODO call api to update agents
         res.send(200);
 
     }
@@ -151,7 +120,7 @@ app.post('/add_agent',function(req,res){
 });
 
 app.get('/view_agents', function(req, res){
-
+    // TODO call api to get all agents
     var agents = [
         {
             "agent_id": "fake_rainbow_id1",
@@ -164,7 +133,9 @@ app.get('/view_agents', function(req, res){
             "malay": 0,
             "insurance": 1,
             "bank statement": 1,
-            "fraud": 1
+            "fraud": 1,
+            "edit_link": "/edit_agent" + "/fake_rainbow_id1",
+            "delete_link": "/delete_agent" + "/fake_rainbow_id1"
         },
         {
             "agent_id": "fake_rainbow_id2",
@@ -177,100 +148,73 @@ app.get('/view_agents', function(req, res){
             "malay": 0,
             "insurance": 1,
             "bank statement": 1,
-            "fraud": 1
+            "fraud": 1,
+            "edit_link": "/edit_agent" + "/fake_rainbow_id2",
+            "delete_link": "/delete_agent" + "/fake_rainbow_id2"
         }
     ]
-
-    // table_html = "";
-    // for (var i = 0; i < agents.length; i++) {
-    //     table_html += "<tr><th>" + agents[i].name + "</th><th>" + agents[i].chinese + "</th></tr>" 
-    // }
     res.render('view_agents', {"agents": agents});
-// 　　if(req.session.user){
-//         console.log("view all agents");
-
-        
-//         var options = {
-//         'method': 'GET',
-//         'url': 'http://10.12.214.214:3000/db/all',
-//         'headers': {
-//         }
-//         };
-//         request(options, function (error, response) { 
-//         if (error) throw new Error(error);
-//         console.log(response.body);
-//         });
-
-//         //var rows = JSON.parse(request.body);
-
-//     　　res.render('view_agents',{rows: request.body});
-
-// 　　}else{
-// 　　　　req.session.error = "Please Login First"
-// 　　　　res.redirect('login');
-// 　　}
 });
 
+app.get('/add_agent', function(req, res){
+    　　if(req.session.user){
+    　　　　res.render('add_agent');
+        }
+        else{
+    　　　　req.session.error = "Please Login First"
+    　　　　res.redirect('login');
+        }
+    });
+
+
 app.get('/edit_agent/:id', function(req, res){
-    res.render('edit_agent');
+    // TODO call api to get agents info
+    var agent_info = {
+        "firstname": "some name",
+        "lastname": "some last name",
+        "email": "'some email'",
+        "chinese": "checked:'true'",
+        "english": '',
+        "malay":1,
+        "skill1": 1,
+        "skill2": 0,
+        "skill3": 0
+    }
+    var agent_id = req.params.id
+    console.log(agent_id)
+    res.render('edit_agent',{"agent": agent_info, "agent_id": agent_id});
 });
 
 
 app.post('/edit_agent/:id', function(req,res){
-    var name = req.body.name;
+    console.log("editing agent post url")
+    var agent_id = req.body.id
+    var firstname = req.body.firstname;
+    var lastname = req.body.lastname;
+    var email = req.body.email;
     var chinese = req.body.chinese;
     var english = req.body.english;
+    var malay = req.body.malay;
     var skill1 = req.body.skill1;
     var skill2 = req.body.skill2;
-    console.log(name, chinese, english, skill1,skill2);
-    if(name!= ''){
-        var options = {
-            'method': 'PUT',
-            'url': 'http://10.12.214.214:3000/db/update/' + req.params.id,
-            'headers': {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({"rainbow_id":"fake_rainbow_id4","name":"Jacob","details":{"languages":{"english":1,"chinese":0,"malay":1}}})
-    
-            };
-            request(options, function (error, response) {
-            res.send(404); 
-            if (error) throw new Error(error);
-            console.log(response.body);
-            });
-            res.send(200);
+    var skill3 = req.body.skill3;
+    console.log(firstname,lastname,email,chinese,english,malay,skill1,skill2,skill3);
+    if(firstname!=''){
+        // TODO call api to update agents
+        console.log("hello updating agent")
+        res.send(200);
     }
     else{
         res.send(404);
     }
-
-})
+});
 
 app.post('/delete_agent/:id', function(req, res){
-    　　if(req.session.user){
-        var options = {
-        'method': 'PUT',
-        'url': 'http://10.12.214.214:3000/db/delete/' + req.params.id,
-        'headers': {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({"rainbow_id":"fake_rainbow_id4","name":"Jacob","details":{"languages":{"english":1,"chinese":0,"malay":1}}})
-
-        };
-        request(options, function (error, response) { 
-        if (error) throw new Error(error);
-        console.log(response.body);
-        });
-
-    　　}else{
-    　　　　req.session.error = "Please Login First"
-    　　　　res.redirect('login');
-    　　}
-    });
-
-
-
-
+    //call api to delete agent
+    agent_id = req.params.id
+    console.log("deleting agent" + agent_id);
+    res.send(200);
+});
 
 
 app.listen(80);

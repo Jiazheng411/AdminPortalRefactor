@@ -133,14 +133,33 @@
                             <th><%= agent.insurance %></th>
                             <th><%= agent.fraud %></th>
                             <th><%= agent["bank statement"] %></th>
-                            <th><a id="a-link" href=home %>'">Home</a></th>
-                            
+                            <th><a id="a-link" href="<%= agent.edit_link %>">Edit</a></th>
+                            <th><input type="button", id="<%= agent.delete_link %>", onclick="remove(this.id);"value="remove"></th>
                         </tr>
                     <% }); %>
                 </tbody>
             </table>
-        <input type="button", id="mybutton", onclick="update();"value="view all"> 
+        <input type="button" onclick="location.href='/home';" value="Back to Home" />
     </div>
 </div>
 </body>
 </html>
+<script> function remove(delete_url){
+    console.log("removing agent");
+    $.ajax({
+        url:delete_url,
+        type:'POST',
+        success:function(data,status){
+            if(status == 'success'){
+                location.href='/view_agents';
+            }
+        },
+        error:function(data,status,e){
+            if(status == "error"){
+                location.href='/view_agents';
+                }
+            }
+        });
+    }
+</script>
+ 
