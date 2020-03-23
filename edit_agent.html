@@ -4,51 +4,52 @@
 <meta charset="utf-8">
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-<div style="height:400px;width:550px;margin:50px auto;margin-left:auto;border:solid 1px;background: rgb(246, 246, 253);">
-    　　<div style="margin-left: 45px;">
-        　　<h1>Edit agent information</h1>
-            <h1>Agent information</h1>
-    　　　　<form action="#" role="form" method="post">
-                    <p>Agent id</p>
-                    <p id="agent_id"><%= agent_id %></p>
-                    <p>firstname</p>
-                    <input type="text" id="firstname" name="firstname" value="<%= agent.firstname %>"/>
-                    <p>lastname</p>
-                    <input type="text" id="lastname" name="lastname" value="<%= agent.lastname %>"/>
-                    <p>email address</p>
-                    <input type="text" id="email" name="email" onkeyup="" value="<%= agent.email %>"/>
-                    <p>Languages and Skills</p>
-                    <p>
-                        <input type="checkbox" id="chinese" checked = "false">
-                        <label for="chinese">Chinese</label>
-                    </p>
-                    <p>
-                        <input type="checkbox" id="english" <%= agent.english %>>
-                        <label for="english">English</label>
-                    </p>
-                    <p>
-                        <input type="checkbox" id="malay">
-                        <label for="malay">Malay</label>
-                    </p>
-                    <p>
-                        <input type="checkbox" id="skill1">
-                        <label for="skill1">Insurance</label>
-                    </p>
-                    <p>
-                        <input type="checkbox" id="skill2">
-                        <label for="skill2">Fraud</label>
-                    </p>
-                    <p>
-                        <input type="checkbox" id="skill3">
-                        <label for="skill3">Bank Statement</label>
-                    </p>
-                    <div style="margin-top:30px;margin-left:125px;">
-            　　　　　　　<input type="button" onclick="edit_agent();" value="Save">
-                        <input type="button" onclick="location.href='/view_agents';" value='Back' /> 
-        　　　　　　</div>
-            </form>
-    　　</div>
-    </div>
+<div style="height:1000px;width:550px;margin:50px auto;margin-left:auto;border:solid 1px;background: rgb(246, 246, 253);">
+　　<div style="margin-left: 45px;">
+    　　<h1>Update agent information</h1>
+        <h2>Agent information</h2>
+　　　　<form action="#" role="form" method="post">
+            <h4>Agent id</h4>
+            <p id="agent_id"><%= agent_id %></p>
+            <h4>Firstname</h4>
+            <input type="text" id="firstname" name="firstname" value="<%= agent.firstname %>"/>
+            <h4>Lastname</h4>
+            <input type="text" id="lastname" name="lastname" value="<%= agent.lastname %>"/>
+            <h4>Email Address</h4>
+            <input type="text" id="email" name="email" onkeyup="" value="<%= agent.email %>"/>
+            <h4>Languages</h4>
+            <p>
+                <input type="checkbox" id="chinese" checked = "false">
+                <label for="chinese">Chinese</label>
+            </p>
+            <p>
+                <input type="checkbox" id="english" <%= agent.english %>>
+                <label for="english">English</label>
+            </p>
+            <p>
+                <input type="checkbox" id="malay">
+                <label for="malay">Malay</label>
+            </p>
+            <h4>Skills</h4>
+            <p>
+                <input type="checkbox" id="skill1">
+                <label for="skill1">Insurance</label>
+            </p>
+            <p>
+                <input type="checkbox" id="skill2">
+                <label for="skill2">Fraud</label>
+            </p>
+            <p>
+                <input type="checkbox" id="skill3">
+                <label for="skill3">Bank Statement</label>
+            </p>
+            <div style="margin-top:30px;margin-left:125px;">
+    　　　　　　　<input type="button" onclick="edit_agent();" value="Save">
+                <input type="button" onclick="location.href='/view_agents';" value='Back' /> 
+　　　　　　</div>
+        </form>
+　　</div>
+</div>
 
 <script> function edit_agent(){
     console.log("editing agent");

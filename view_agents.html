@@ -6,67 +6,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/public/favicon.ico">
-    <title>签到</title>
-    <link href="/public/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-    <script src="/public/javascripts/bootstrap.min.js"></script>
 
     <style>
         body {
             padding-top: 50px;
             padding-bottom: 20px;
-            background-color: #eee;
+            background-color: rgb(255, 255, 255);
+            text-align:center
+        }
+    </style>
+    <style type="text/css">
+        /* Table Head */
+        #table-7 thead th {
+        background-color: rgb(81, 130, 187);
+        color: #fff;
+        border-bottom-width: 0;
+        }
+
+        /* Column Style */
+        #table-7 td {
+        color: #000;
+        }
+        /* Heading and Column Style */
+        #table-7 tr, #table-7 th {
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(81, 130, 187);
+        }
+
+        /* Padding and font style */
+        #table-7 td, #table-7 th {
+        padding: 5px 10px;
+        font-size: 12px;
+        font-family: Verdana;
+        font-weight: bold;
         }
     </style>
 </head>
 
 <body>
-<!-- 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <span class="navbar-brand">你好:</span>
-            <a class="navbar-brand" href="/" id="name" title="返回到首页">{{name}}</a>
-            <span style="display: none" id="sno">{{sno}}</span>
-            <span style="display: none" id="signinid">{{signinid}}</span>
-            <div class="navbar-form navbar-right">
-                {% if !signstate %}
-                <button class="btn btn-success" id="signin">签到</button>
-                <button class="btn btn-danger disabled">签退</button>
-                {% else%}
-                <button class="btn btn-success disabled" >签到</button>
-                <button class="btn btn-danger" id="signout">签退</button>
-                {% endif %}
-                <button class="btn btn-danger" id="logout" style="margin-left: 25px">退出登录</button>
-            </div>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <div class="navbar-form navbar-right">
-                <div class="form-group">
-                    <input type="text" placeholder="输入姓名，搜索签到记录" style="width:180px" class="form-control" id="searchname">
-                </div>
-                <button class="btn btn-success" id="search">搜索</button>
-            </div>
 
-        </div>
-    </div>
-</nav> -->
-
-<!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
-    <div class="container" >
+<div style="margin:auto;">
+    <div class="container" style="margin:auto;">
         
-        <h1>All Agents</h1>
-            <table id = agent_table> 
+        <h1 style="margin:20px auto;">All Agents</h1>
+            <table id = table-7 style="margin:auto;"> 
                 <thead>
                     <tr>
                         <th>Fullname</th>
@@ -77,6 +63,8 @@
                         <th>Insurance</th>
                         <th>Fraud</th>
                         <th>Bank Statement</th>
+                        <th>Update Agent</th>
+                        <th>Remove Agent</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,7 +84,10 @@
                     <% }); %>
                 </tbody>
             </table>
-        <input type="button" onclick="location.href='/home';" value="Back to Home" />
+        <div style="margin: 20px auto">
+            <input type="button" onclick="location.href='/home';" value="Back to Home" />
+        </div>
+        
     </div>
 </div>
 </body>
