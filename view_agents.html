@@ -1,48 +1,5 @@
 <title>User Login</title>
 
-
-<!-- 
-<h1>User Login</h1>
-<div style="height:300px;width:350px;margin:100px auto;margin-left:auto;border:solid 1px;background: rgb(246, 246, 253);">
-　　<div style="width:200px;margin:auto;margin-top:50px;">
-　　　　<h1>All Agents</h1>
-            <table id = agent_table> 
-                <thead>
-                    <tr>
-                        <th>Fullname</th>
-                        <th>Email</th>
-                        <th>Chinese</th>
-                        <th>English</th>
-                        <th>Malay</th>
-                        <th>Insurance</th>
-                        <th>Fraud</th>
-                        <th>Bank Statement</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% agents.forEach(function(agent) { %>
-                        <tr>
-                            <th><%= agent.firstname %> <%= agent.lastname %></th>
-                            <th><%= agent.email %></th>
-                            <th><%= agent.chinese %></th>
-                            <th><%= agent.english %></th>
-                            <th><%= agent.malay %></th>
-                            <th><%= agent.insurance %></th>
-                            <th><%= agent.fraud %></th>
-                            <th><%= agent["bank statement"] %></th>
-                            <th><a id="a-link" href=home %>'">Home</a></th>
-                            
-                        </tr>
-                    <% }); %>
-                </tbody>
-            </table>
-        <input type="button", id="mybutton", onclick="update();"value="view all"> 
-　　</div>
-</div>
-
- -->
-
-
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -54,7 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/public/favicon.ico">
     <title>签到</title>
-    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <script src="/public/javascripts/bootstrap.min.js"></script>
 
     <style>
@@ -132,9 +89,9 @@
                             <th><%= agent.malay %></th>
                             <th><%= agent.insurance %></th>
                             <th><%= agent.fraud %></th>
-                            <th><%= agent["bank statement"] %></th>
-                            <th><a id="a-link" href="<%= agent.edit_link %>">Edit</a></th>
-                            <th><input type="button", id="<%= agent.delete_link %>", onclick="remove(this.id);"value="remove"></th>
+                            <th><%= agent.bank_statement %></th>
+                            <th><input type="button" onclick="location.href='/edit_agent/'+ '<%= agent.agent_id %>';" value="Edit" /> </th>
+                            <th><input type="button", id="delete_agent/<%= agent.agent_id %>", onclick="remove(this.id);"value="Remove"></th>
                         </tr>
                     <% }); %>
                 </tbody>
