@@ -1,6 +1,6 @@
 
 
-<title>Edit_Agent</title>
+<title>Update Agent Info</title>
 <meta charset="utf-8">
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -63,6 +63,19 @@
     var skill1 = 0;
     var skill2 = 0;
     var skill3 = 0;
+
+    if (firstname == "" || lastname == ""){
+        console.log("empty name");
+        alert("Please enter your name");
+        return;
+    }
+
+    var email_pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+    if(email_pattern.test(email) != true){
+        console.log("invalid email");
+        alert("Please enter a valid email");
+        return;
+    }
     if($("#chinese").is(':checked')){
         chinese = 1;
     }
@@ -98,12 +111,13 @@
         data:data,
         success:function(data,status){
             if(status == 'success'){
+                alert("Updated agent information successfully!")
                 location.href='/view_agents';
             }
         },
         error:function(data,status,e){
             if(status == "error"){
-                location.href='edit_agent';
+                alert("Updating agent information fail, please try again");
                 }
             }
         });

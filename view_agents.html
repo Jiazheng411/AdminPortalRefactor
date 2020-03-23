@@ -1,4 +1,4 @@
-<title>User Login</title>
+<title>All Agents</title>
 
 <!DOCTYPE html>
 <head>
@@ -102,17 +102,23 @@
 </body>
 </html>
 <script> function remove(delete_url){
-    console.log("removing agent");
+    if (confirm("Are you sure you wan to delete the agent from the system?")) {
+        console.log("removing agent");
+    } else {
+        return;
+    }
     $.ajax({
         url:delete_url,
         type:'POST',
         success:function(data,status){
             if(status == 'success'){
-                location.href='/view_agents';
+                alert("Deleted agent successfully!")
+                location.reload();
             }
         },
         error:function(data,status,e){
             if(status == "error"){
+                alert("Deleting agent failed, please try again.")
                 location.href='/view_agents';
                 }
             }

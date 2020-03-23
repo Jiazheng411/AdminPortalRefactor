@@ -1,6 +1,6 @@
 
 
-<title>Add_Agent</title>
+<title>Add Agent</title>
 <meta charset="utf-8">
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -9,14 +9,16 @@
         　　<h1>Adding agents</h1>
             <h1>Agent information</h1>
     　　　　<form action="#" role="form" method="post">
-                    <p>firstname</p>
+                    <p>Firstname</p>
                     <input type="text" id="firstname" name="firstname" />
-                    <p>lastname</p>
+                    <p>Lastname</p>
                     <input type="text" id="lastname" name="lastname" />
-                    <p>email address</p>
+                    <p>Email address</p>
                     <input type="text" id="email" name="email" onkeyup=""/>
-                    <p>password</p>
+                    <p>Password: length must be between 8 and 64 characters, contain at least 1 lowercase, 1 uppercase, 1 number and 1 special character</p>
                     <input type="password" id="password" name="password" />
+                    <p>Confirm password</p>
+                    <input type="password" id="confirm_password" name="confirm_password" />
                     <p>Languages and Skills</p>
                     <p>
                         <input type="checkbox" id="chinese">
@@ -56,12 +58,39 @@
     var lastname = $('#lastname').val();
     var email = $('#email').val();
     var password = $('#password').val();
+    var confirm_password = $('#confirm_password').val();
     var chinese = 0;
     var english = 0;
     var malay = 0;
     var skill1 = 0;
     var skill2 = 0;
     var skill3 = 0;
+
+    if (firstname == "" || lastname == ""){
+        console.log("empty name");
+        alert("Please enter your name");
+        return;
+    }
+
+    var email_pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+    if(email_pattern.test(email) != true){
+        console.log("invalid email");
+        alert("Please enter a valid email");
+        return;
+    }
+
+    var password_pattern = /^.*(?=.{8,64})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/;
+    if(password_pattern.test(password) != true){
+        alert("Please enter a valid password");
+        return;
+    }
+
+    if(password != confirm_password){
+        alert("Password and confirm password are different, please check again");
+        return;
+    }
+
+
     if($("#chinese").is(':checked')){
         chinese = 1;
     }
@@ -98,11 +127,13 @@
         data:data,
         success:function(data,status){
             if(status == 'success'){
+                alert("Agent added successfully!")
                 location.href='home';
             }
         },
         error:function(data,status,e){
             if(status == "error"){
+                alert("Adding agent failed, please try again.")
                 location.href='add_agent';
                 }
             }
