@@ -45,49 +45,45 @@
         }
     </style>
 </head>
-
 <body>
-
 <div style="margin:auto;">
     <div class="container" style="margin:auto;">
-        
         <h1 style="margin:20px auto;">All Agents</h1>
-            <table id = table-7 style="margin:auto;"> 
-                <thead>
+        <table id = table-7 style="margin:auto;"> 
+            <thead>
+                <tr>
+                    <th>Fullname</th>
+                    <th>Email</th>
+                    <th>Chinese</th>
+                    <th>English</th>
+                    <th>Malay</th>
+                    <th>Insurance</th>
+                    <th>Fraud</th>
+                    <th>Bank Statement</th>
+                    <th>Update Agent</th>
+                    <th>Remove Agent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% agents.forEach(function(agent) { %>
                     <tr>
-                        <th>Fullname</th>
-                        <th>Email</th>
-                        <th>Chinese</th>
-                        <th>English</th>
-                        <th>Malay</th>
-                        <th>Insurance</th>
-                        <th>Fraud</th>
-                        <th>Bank Statement</th>
-                        <th>Update Agent</th>
-                        <th>Remove Agent</th>
+                        <th><%= agent.firstname %> <%= agent.lastname %></th>
+                        <th><%= agent.email %></th>
+                        <th><%= agent.chinese %></th>
+                        <th><%= agent.english %></th>
+                        <th><%= agent.malay %></th>
+                        <th><%= agent.insurance %></th>
+                        <th><%= agent.fraud %></th>
+                        <th><%= agent.bank_statement %></th>
+                        <th><input type="button" onclick="location.href='/edit_agent/'+ '<%= agent.agent_id %>';" value="Edit" /> </th>
+                        <th><input type="button", id="delete_agent/<%= agent.agent_id %>", onclick="remove(this.id);"value="Remove"></th>
                     </tr>
-                </thead>
-                <tbody>
-                    <% agents.forEach(function(agent) { %>
-                        <tr>
-                            <th><%= agent.firstname %> <%= agent.lastname %></th>
-                            <th><%= agent.email %></th>
-                            <th><%= agent.chinese %></th>
-                            <th><%= agent.english %></th>
-                            <th><%= agent.malay %></th>
-                            <th><%= agent.insurance %></th>
-                            <th><%= agent.fraud %></th>
-                            <th><%= agent.bank_statement %></th>
-                            <th><input type="button" onclick="location.href='/edit_agent/'+ '<%= agent.agent_id %>';" value="Edit" /> </th>
-                            <th><input type="button", id="delete_agent/<%= agent.agent_id %>", onclick="remove(this.id);"value="Remove"></th>
-                        </tr>
-                    <% }); %>
-                </tbody>
-            </table>
+                <% }); %>
+            </tbody>
+        </table>
         <div style="margin: 20px auto">
             <input type="button" onclick="location.href='/home';" value="Back to Home" />
         </div>
-        
     </div>
 </div>
 </body>

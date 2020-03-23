@@ -47,7 +47,7 @@ app.get('/home',function(req,res){
 　　　　res.render('home');
 　　}else{
 　　　　req.session.error = "Please Login First"
-　　　　res.redirect('login');
+　　　　res.redirect('/login');
 　　}
 });
 
@@ -86,7 +86,7 @@ app.get('/add_agent', function(req, res){
     }
     else{
 　　　　req.session.error = "Please Login First"
-　　　　res.redirect('login');
+　　　　res.redirect('/login');
     }
 });
 
@@ -135,7 +135,7 @@ app.post('/add_agent',function(req,res){
     }
     else{
 　　　　req.session.error = "Please Login First"
-　　　　res.redirect('login');
+　　　　res.redirect('/login');
     }
     
     
@@ -202,7 +202,7 @@ app.get('/view_agents', function(req, res){
     }
     else{
 　　　　req.session.error = "Please Login First"
-　　　　res.redirect('login');
+　　　　res.redirect('/login');
     }
     
 });
@@ -238,7 +238,7 @@ app.get('/edit_agent/:id', function(req, res){
     
     else{
 　　　　req.session.error = "Please Login First"
-　　　　res.redirect('login');
+　　　　res.redirect('/login');
     }    
 });
 
@@ -291,7 +291,7 @@ app.post('/edit_agent/:id', function(req,res){
     }
     else{
 　　　　req.session.error = "Please Login First"
-　　　　res.redirect('login');
+　　　　res.redirect('/login');
     }      
 });
 
@@ -323,7 +323,7 @@ app.post('/delete_agent/:id', function(req, res){
     
     else{
 　　　　req.session.error = "Please Login First"
-　　　　res.redirect('login');
+　　　　res.redirect('/login');
     }  
 });
 

@@ -19,28 +19,28 @@
             <input type="text" id="email" name="email" onkeyup="" value="<%= agent.email %>"/>
             <h4>Languages</h4>
             <p>
-                <input type="checkbox" id="chinese" checked = "false">
+                <input type="checkbox" id="chinese" value="<%= agent.chinese %>">
                 <label for="chinese">Chinese</label>
             </p>
             <p>
-                <input type="checkbox" id="english" <%= agent.english %>>
+                <input type="checkbox" id="english" value="<%= agent.english %>">
                 <label for="english">English</label>
             </p>
             <p>
-                <input type="checkbox" id="malay">
+                <input type="checkbox" id="malay" value="<%= agent.malay %>">
                 <label for="malay">Malay</label>
             </p>
             <h4>Skills</h4>
             <p>
-                <input type="checkbox" id="skill1">
+                <input type="checkbox" id="skill1" value="<%= agent.insurance %>">
                 <label for="skill1">Insurance</label>
             </p>
             <p>
-                <input type="checkbox" id="skill2">
+                <input type="checkbox" id="skill2" value="<%= agent.fraud %>">
                 <label for="skill2">Fraud</label>
             </p>
             <p>
-                <input type="checkbox" id="skill3">
+                <input type="checkbox" id="skill3" value="<%= agent.bank_statement %>">
                 <label for="skill3">Bank Statement</label>
             </p>
             <div style="margin-top:30px;margin-left:125px;">
@@ -50,6 +50,35 @@
         </form>
 　　</div>
 </div>
+
+<script>
+    $(function(){ 
+        var chinese = $('#chinese').val();
+        var english = $('#english').val();
+        var malay = $('#malay').val();
+        var skill1 = $('#skill1').val();
+        var skill2 = $('#skill2').val();
+        var skill3 = $('#skill3').val();
+        if (chinese == '1'){
+            $('#chinese').attr('checked', 'checked');
+        }
+        if (english == '1'){
+            $('#english').attr('checked', 'checked');
+        }
+        if (malay == '1'){
+            $('#malay').attr('checked', 'checked');
+        }
+        if (skill1 == '1'){
+            $('#skill1').attr('checked', 'checked');
+        }
+        if (skill2 == '1'){
+            $('#skill2').attr('checked', 'checked');
+        }
+        if (skill3 == '1'){
+            $('#skill3').attr('checked', 'checked');
+        }
+});
+</script>
 
 <script> function edit_agent(){
     console.log("editing agent");
