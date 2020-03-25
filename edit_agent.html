@@ -44,8 +44,8 @@
                 <label for="skill3">Bank Statement</label>
             </p>
             <div style="margin-top:30px;margin-left:125px;">
-    　　　　　　　<input type="button" onclick="edit_agent();" value="Save">
-                <input type="button" onclick="location.href='/view_agents';" value='Back' /> 
+    　　　　　　　<input id="save" type="button" onclick="edit_agent();" value="Save">
+                <input id="back" type="button" onclick="location.href='/view_agents';" value='Back' /> 
 　　　　　　</div>
         </form>
 　　</div>
@@ -123,6 +123,10 @@
     }
     if($("#skill3").is(':checked')){
         skill3 = 1;
+    }
+    if((skill1 == 0 && skill2 == 0 && skill3 == 0) || (chinese == 0 && english == 0 && malay == 0)){
+        alert("Please choose at least one language and one skill");
+        return;
     }
 
     var data = {"firstname": firstname, 

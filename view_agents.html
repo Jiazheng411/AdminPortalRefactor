@@ -75,14 +75,14 @@
                         <th><%= agent.insurance %></th>
                         <th><%= agent.fraud %></th>
                         <th><%= agent.bank_statement %></th>
-                        <th><input type="button" onclick="location.href='/edit_agent/'+ '<%= agent.agent_id %>';" value="Edit" /> </th>
-                        <th><input type="button", id="delete_agent/<%= agent.agent_id %>", onclick="remove(this.id);"value="Remove"></th>
+                        <th><input type="button" name="edit" onclick="location.href='/edit_agent/'+ '<%= agent.agent_id %>';" value="Edit" /> </th>
+                        <th><input type="button", name="delete" id="delete_agent/<%= agent.agent_id %>", onclick="remove(this.id);"value="Remove"></th>
                     </tr>
                 <% }); %>
             </tbody>
         </table>
         <div style="margin: 20px auto">
-            <input type="button" onclick="location.href='/home';" value="Back to Home" />
+            <input id="back" type="button" onclick="location.href='/home';" value="Back to Home" />
         </div>
     </div>
 </div>

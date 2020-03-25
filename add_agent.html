@@ -47,8 +47,8 @@
                 <label for="skill3">Bank Statement</label>
             </p>
             <div style="margin-top:30px;margin-left:125px;">
-    　　　　　　 <input type="button" onclick="add_agent();" value="Add">
-                <input type="button" onclick="location.href='/home';" value="Go Back to Home" />  
+    　　　　　　 <input id=add type="button" onclick="add_agent();" value="Add">
+                <input id=back type="button" onclick="location.href='/home';" value="Go Back to Home" />  
 　　　　　　</div>
         </form>
 　　</div>
@@ -68,9 +68,10 @@
     var skill2 = 0;
     var skill3 = 0;
 
-    if (firstname == "" || lastname == ""){
+    var name_pattern = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/
+    if (name_pattern.test(firstname) != true|| name_pattern.test(lastname) != true){
         console.log("empty name");
-        alert("Please enter your name");
+        alert("Please enter a valid name");
         return;
     }
 
@@ -112,6 +113,11 @@
         skill3 = 1;
     }
 
+    if((skill1 == 0 && skill2 == 0 && skill3 == 0) || (chinese == 0 && english == 0 && malay == 0)){
+        alert("Please choose at least one language and one skill");
+        return;
+    }
+
     var data = {"firstname": firstname, 
                 "lastname": lastname, 
                 "password":password, 
@@ -135,8 +141,7 @@
         },
         error:function(data,status,e){
             if(status == "error"){
-                alert("Adding agent failed, please try again.")
-                location.href='add_agent';
+                alert("Adding agent failed, the email might be already registered, please try again.");
                 }
             }
         });

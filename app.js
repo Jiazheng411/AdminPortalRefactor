@@ -128,10 +128,16 @@ app.post('/add_agent',function(req,res){
                 res.send(404);
                 throw new Error(error);
             }
-            console.log(response.body);
+            if (response.statusCode == 200 && JSON.parse(response.body).success == true){
+                console.log(response.body);
+                res.send(200);
+            }else{
+                console.log(response.body);
+                res.send(404);
+            }
+            
         });
-        console.log("hello add agent success")
-        res.send(200);
+        
     }
     else{
 　　　　req.session.error = "Please Login First"
