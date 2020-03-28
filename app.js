@@ -76,7 +76,7 @@ app.post('/login',function(req,res){
 app.get('/logout', function(req, res){
 　　req.session.user = null;
 　　req.session.error = null;
-　　res.redirect('index');
+　　res.redirect('/');
 });
  
 
