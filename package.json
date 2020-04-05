@@ -1,0 +1,29 @@
+{
+  "name": "express-signin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec --timeout 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jiazheng411/AdminPortalRefactor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jiazheng411/AdminPortalRefactor/issues"
+  },
+  "homepage": "https://github.com/Jiazheng411/AdminPortalRefactor#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "express": "^4.17.1",
+    "mocha": "^7.1.1",
+    "request": "^2.88.2",
+    "supertest": "^4.0.2"
+  }
+}
