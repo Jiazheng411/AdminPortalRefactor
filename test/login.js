@@ -1,10 +1,6 @@
 var expect  = require("chai").expect;
 var request = require("request");
 
-
-var Cookies;
-
-
 describe("Admin Portal", function() {
         
     describe("Login page", function() {
@@ -52,37 +48,11 @@ describe("Admin Portal", function() {
                 expect(response.statusCode).to.equal(200);
                 
                 Cookies = response.headers['set-cookie'].pop().split(';')[0];
-                console.log(Cookies);
                 done();
             });
         }); 
     });
 
-    // describe("Access other page after login", function() {
-    
-    //     // var url = "http://localhost:80/view_agents";
-    //     // var options = {
-    //     //     url: "http://localhost:80/login",
-    //     //     method: "post",
-    //     //     'headers': {
-    //     //         'Content-Type': 'application/json'
-    //     //     },
-    //     //     body: JSON.stringify(user)
-    //     // }
-    //     var options = {
-    //         url : "http://localhost:80/view_agents",
-    //         method: 'get',
-    //         cookies: Cookies
-    //     }
-    //     it("redirect to login page", function(done) {
-    //         request(options, function(error, response, body) {
-    //         expect(response.statusCode).to.equal(200);
-    //         // check redirection
-    //         console.log(response.body);
-    //         done();
-    //         });
-    //     });
-    // });
 
     describe("Logout page", function() {
     

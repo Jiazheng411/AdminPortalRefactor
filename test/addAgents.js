@@ -1,24 +1,45 @@
 var expect  = require("chai").expect;
-var request = require("request");
+var request = require('supertest'),
+    should = require('chai').should();
 
 describe("Add agent", function() {
-        
+    var agent = request.agent('http://localhost:80') ;
     // to do: keep user session
 
-    describe("Add agent page", function() {
-    
-        var url = "http://localhost:80/add_agent";
-    
-        it("returns status 200", function(done) {
-            request(url, function(error, response, body) {
-            expect(response.statusCode).to.equal(200);
+    before(function(done){
+        agent
+          .post('/login')
+          .send({username: 'admin', password: 'admin'})
+          .end(function(err, res) {
+            if (err) return done(err);
             done();
+          });
+    })
+  
+    after(function(done){
+        agent
+          .get('/logout')
+          .end(function(err, res) {
+            if (err) return done(err);
+  
+            done();
+          });
+    })
+
+    describe('get add agent page', function(){
+        it('should return 200', function (done) {
+          agent
+            .get('/add_agent')
+            .end(function (err, res) {
+              if (err) return done(err);
+              res.status.should.be.equal(200);
+              done();
             });
         });
-    });
+      });
 
-    describe("Add agent without session", function() {
-        
+
+    describe('add agent with valid information', function(){
         var agent_info = {
             password: "Sutd@1234",
             firstname: "Apple",
@@ -31,73 +52,20 @@ describe("Add agent", function() {
             skill2:1,
             skill3:1
         }
-
-        var session = {
-            user: "admin",
-            password: "admin"
-        }
-
-        var options = {
-            'method': 'POST',
-            'url': "http://localhost:80/add_agent",
-            'headers': {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(agent_info),
-            session: JSON.stringify(session)
-        }
-
-    
-        it("returns status 302", function(done) {
-            request(options, function(error, response, body) {
-            expect(response.statusCode).to.equal(302);
-            console.log(response.body);
-            done();
+        it('add agent successfully and return 200', function (done) {
+          agent
+            .post('/add_agent')
+            .send(agent_info)
+            .end(function (err, res) {
+              if (err) return done(err);
+              res.status.should.be.equal(200);
+              done();
             });
         });
-    });
+      });
 
-    describe("Add agent with valid information", function() {
-        var agent_info = {
-            password: "Sutd@1234",
-            firstname: "Apple",
-            lastname:"Wong",
-            email: "abc@asd.email",
-            english: 1,
-            chinese:1,
-            malay:1,
-            skill1:1,
-            skill2:1,
-            skill3:1
-        }
 
-        var session = {
-            user: "admin",
-            password: "admin"
-        }
-
-        var options = {
-            'method': 'POST',
-            'url': "http://localhost:80/add_agent",
-            'headers': {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(agent_info),
-            session: JSON.stringify(session)
-        }
-
-    
-        it("returns status 200", function(done) {
-            request(options, function(error, response, body) {
-            expect(response.statusCode).to.equal(200);
-            console.log(response.body);
-            done();
-            });
-        });
-    });
-
-    describe("Add agent with invalid information", function() {
-        
+      describe('add agent with invalid information', function(){
         var agent_info = {
             password: "1234",
             firstname: "Apple",
@@ -110,25 +78,16 @@ describe("Add agent", function() {
             skill2:1,
             skill3:1
         }
-
-
-        var options = {
-            'method': 'POST',
-            'url': "http://localhost:80/add_agent",
-            'headers': {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(agent_info),
-        }
-
-    
-        it("returns status 404", function(done) {
-            request(options, function(error, response, body) {
-            expect(response.statusCode).to.equal(404);
-            console.log(response.body);
-            done();
+        it('add agent not successfully and return 404', function (done) {
+          agent
+            .post('/add_agent')
+            .send(agent_info)
+            .end(function (err, res) {
+              if (err) return done(err);
+              res.status.should.be.equal(404);
+              done();
             });
         });
-    });
+      });
 
 });

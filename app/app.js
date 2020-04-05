@@ -63,7 +63,6 @@ app.post('/login',function(req,res){
 　　　　username:'admin',
 　　　　password:'admin'
 　　}
-    console.log(req.body);
 　　if(req.body.username == user.username && req.body.password == user.password){
 　　　　req.session.user = user;
 　　　　res.send(200);
@@ -93,7 +92,6 @@ app.get('/add_agent', function(req, res){
 
 
 app.post('/add_agent',function(req,res){
-    console.log(req);
     if(req.session.user){
         console.log("adding agent post url")
         var agent_info = {
@@ -132,6 +130,7 @@ app.post('/add_agent',function(req,res){
             }
             if (response.statusCode == 200 && JSON.parse(response.body).success == true){
                 console.log(response.body);
+                console.log("adding successfully")
                 res.send(200);
             }else{
                 console.log(response.body);
@@ -290,6 +289,7 @@ app.post('/edit_agent/:id', function(req,res){
             }
             console.log(response.body);
             if(response.statusCode == 200 && JSON.parse(response.body).success == true){
+                console.log('update agent successfully');
                 res.send(200);  
             }
             else{

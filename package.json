@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec --timeout 5000"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "chai": "^4.2.0",
     "express": "^4.17.1",
     "mocha": "^7.1.1",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "supertest": "^4.0.2"
   }
 }
