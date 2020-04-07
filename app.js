@@ -1,20 +1,43 @@
 var express = require('express');
-var app = express();
+var path = require('path');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var session = require('express-session');
 var request = require('request');
 
+var app = express();
 
-app.set('views', __dirname);
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
 app.set( 'view engine', 'html' );
 app.engine( '.html', require( 'ejs' ).__express );
 
-
-// app.use('/public', express.static('public'));
+// uncomment after placing your favicon in /public
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(multer());
+
+
+
+// var express = require('express');
+// var app = express();
+// var bodyParser = require('body-parser');
+// var multer = require('multer');
+// var session = require('express-session');
+// var request = require('request');
+
+
+// app.set('views', __dirname);
+// app.set( 'view engine', 'html' );
+// app.engine( '.html', require( 'ejs' ).__express );
+
+
+// // app.use('/public', express.static('public'));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(multer());
  
 
 app.use(session({
@@ -337,3 +360,59 @@ app.post('/delete_agent/:id', function(req, res){
 
 
 app.listen(80);
+
+
+// var express = require('express');
+// var path = require('path');
+// var bodyParser = require('body-parser');
+// var multer = require('multer');
+// var session = require('express-session');
+
+// // var login_api = require('./routes/login');
+// // var update_api = require('./routes/update');
+// // var add_api = require('./routes/addview');
+// var index = require('./routes/index');
+
+// var app = express();
+
+// // view engine setup
+// app.set('views', path.join(__dirname, 'views'));
+// app.set( 'view engine', 'html' );
+// app.engine( '.html', require( 'ejs' ).__express );
+
+// // uncomment after placing your favicon in /public
+// //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.use(multer());
+// // app.use('/public', express.static('public'));
+
+// app.use('/', index);
+
+
+ 
+// app.use(session({
+//     secret:'secret',
+//     resave:true,
+//     saveUninitialized:false,
+//     cookie:{
+//         maxAge:1000*60*10 //expire time (ms)
+//     }
+// }));
+
+// app.use(function(req, res, next){
+// 　　res.locals.user = req.session.user;
+// 　　var err = req.session.error;
+// 　　res.locals.message = '';
+// 　　if (err) res.locals.message = '<div style="margin-bottom: 20px;color:red;">' + err + '</div>';
+// 　　next();
+// });
+
+
+
+// /* Set up to listen  */
+// app.listen(80);
+
+
+// module.exports = app;
