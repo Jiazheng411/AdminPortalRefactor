@@ -11,7 +11,7 @@ app.set( 'view engine', 'html' );
 app.engine( '.html', require( 'ejs' ).__express );
 
 
-app.use('/public', express.static('public'));
+// app.use('/public', express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());

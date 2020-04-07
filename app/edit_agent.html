@@ -4,52 +4,156 @@
 <meta charset="utf-8">
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-<div style="height:1000px;width:550px;margin:50px auto;margin-left:auto;border:solid 1px;background: rgb(246, 246, 253);">
-　　<div style="margin-left: 45px;">
-    　　<h1>Update agent information</h1>
-        <h2>Agent information</h2>
-　　　　<form action="#" role="form" method="post">
-            <h4>Agent id</h4>
-            <p id="agent_id"><%= agent_id %></p>
-            <h4>Firstname</h4>
-            <input type="text" id="firstname" name="firstname" value="<%= agent.firstname %>"/>
-            <h4>Lastname</h4>
-            <input type="text" id="lastname" name="lastname" value="<%= agent.lastname %>"/>
-            <h4>Email Address</h4>
-            <input type="text" id="email" name="email" onkeyup="" value="<%= agent.email %>"/>
-            <h4>Languages</h4>
-            <p>
-                <input type="checkbox" id="chinese" value="<%= agent.chinese %>">
-                <label for="chinese">Chinese</label>
-            </p>
-            <p>
-                <input type="checkbox" id="english" value="<%= agent.english %>">
-                <label for="english">English</label>
-            </p>
-            <p>
-                <input type="checkbox" id="malay" value="<%= agent.malay %>">
-                <label for="malay">Malay</label>
-            </p>
-            <h4>Skills</h4>
-            <p>
-                <input type="checkbox" id="skill1" value="<%= agent.insurance %>">
-                <label for="skill1">Insurance</label>
-            </p>
-            <p>
-                <input type="checkbox" id="skill2" value="<%= agent.fraud %>">
-                <label for="skill2">Fraud</label>
-            </p>
-            <p>
-                <input type="checkbox" id="skill3" value="<%= agent.bank_statement %>">
-                <label for="skill3">Bank Statement</label>
-            </p>
-            <div style="margin-top:30px;margin-left:125px;">
-    　　　　　　　<input id="save" type="button" onclick="edit_agent();" value="Save">
-                <input id="back" type="button" onclick="location.href='/view_agents';" value='Back' /> 
-　　　　　　</div>
+<style type="text/css">
+    body {
+            background-color: #F3EBF6;
+            font-family: 'Ubuntu', sans-serif;
+        }
+        .form-style-5{
+            max-width: 500px;
+            padding: 10px 20px;
+            background: #f4f7f8;
+            margin: 10px auto;
+            padding: 20px;
+            background: #f4f7f8;
+            border-radius: 8px;
+            font-family: Georgia, "Times New Roman", Times, serif;
+        }
+        .form-style-5 fieldset{
+            border: none;
+        }
+        .form-style-5 legend {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        .form-style-5 label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        .form-style-5 input[type="text"],
+        .form-style-5 input[type="date"],
+        .form-style-5 input[type="datetime"],
+        .form-style-5 input[type="email"],
+        .form-style-5 input[type="number"],
+        .form-style-5 input[type="search"],
+        .form-style-5 input[type="time"],
+        .form-style-5 input[type="url"],
+        .form-style-5 input[type="password"],
+        .form-style-5 textarea,
+        .form-style-5 select {
+            font-family: Georgia, "Times New Roman", Times, serif;
+            background: rgba(255,255,255,.1);
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            margin: 0;
+            outline: 0;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box; 
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box; 
+            background-color: #e8eeef;
+            color:#8a97a0;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+            margin-bottom: 30px;
+        }
+        .form-style-5 input[type="text"]:focus,
+        .form-style-5 input[type="date"]:focus,
+        .form-style-5 input[type="datetime"]:focus,
+        .form-style-5 input[type="email"]:focus,
+        .form-style-5 input[type="number"]:focus,
+        .form-style-5 input[type="search"]:focus,
+        .form-style-5 input[type="time"]:focus,
+        .form-style-5 input[type="url"]:focus,
+        .form-style-5 input[type="password"]:focus,
+        .form-style-5 textarea:focus,
+        .form-style-5 select:focus{
+            background: #d2d9dd;
+        }
+        
+        .form-style-5 .number {
+            background: #8C55AA;
+            color: #fff;
+            height: 30px;
+            width: 30px;
+            display: inline-block;
+            font-size: 0.8em;
+            margin-right: 4px;
+            line-height: 30px;
+            text-align: center;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+            border-radius: 15px 15px 15px 0px;
+        }
+        
+        .form-style-5 input[type="submit"],
+        .form-style-5 input[type="button"]
+        {
+            position: relative;
+            display: block;
+            padding: 19px 39px 18px 39px;
+            color: #FFF;
+            margin: 0 auto;
+            background: #8C55AA;
+            font-size: 18px;
+            text-align: center;
+            font-style: normal;
+            width: 100%;
+            border: 1px solid #8C55AA;
+            border-width: 1px 1px 3px;
+            margin-bottom: 10px;
+        }
+        .form-style-5 input[type="submit"]:hover,
+        .form-style-5 input[type="button"]:hover
+        {
+            background: rgb(161, 101, 194);
+        }
+    </style>
+    
+    
+    <div class="form-style-5">
+        <form>
+        <fieldset>
+        <legend><span class="number">1</span> Agent Info</legend>
+        <label id="agent_id">Agend id: <%= agent_id %></label>
+        <input type="text" id="firstname" name="firstname" value="<%= agent.firstname %>">
+        <input type="text" id="lastname" name="lastname" value="<%= agent.lastname %>">
+        <input type="text" id="email" name="email" value="<%= agent.email %>">
+        </fieldset>
+    
+        <fieldset>
+        <legend><span class="number">2</span> Languages and Skilles</legend>
+        <label >Languages</label>
+        <p>
+            <input type="checkbox" id="chinese" value="<%= agent.chinese %>">
+            <span for="chinese">Chinese</span>
+        </p>
+        <p>
+            <input type="checkbox" id="english" value="<%= agent.english %>">
+            <span for="english">English</span>
+        </p>
+        <p>
+            <input type="checkbox" id="malay" value="<%= agent.malay %>">
+            <span for="malay">Malay</span>
+        </p>
+        <label >Skills</label>
+        <p>
+            <input type="checkbox" id="skill1" value="<%= agent.insurance %>">
+            <span for="skill1">Insurance</span>
+        </p>
+        <p>
+            <input type="checkbox" id="skill2" value="<%= agent.fraud %>">
+            <span for="skill2">Fraud</span>
+        </p>
+        <p>
+            <input type="checkbox" id="skill3" value="<%= agent.bank_statement %>">
+            <span for="skill3">Bank Statement</span>
+        </fieldset>
+            <input id="save" type="button" onclick="edit_agent();" value="Save">
+            <input id="back" type="button" onclick="location.href='/view_agents';" value='Back' /> 
         </form>
-　　</div>
-</div>
+    </div>
 
 <script>
     $(function(){ 
