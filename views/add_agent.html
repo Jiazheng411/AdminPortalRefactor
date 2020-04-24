@@ -10,8 +10,9 @@
     <input type="text" id="firstname" name="firstname" placeholder="Firstname *">
     <input type="text" id="lastname" name="lastname" placeholder="Lastname *">
     <input type="text" id="email" name="email" placeholder="Email *">
-    <label >Passpord: 8-64 length, should have lower and uppercase, number and special character</label>
+    <label >Password: 8-64 length, should have lower and uppercase, number and special character</label>
     <input type="password" id="password" name="password" placeholder="Password *">
+    <label >Confirm Passpord</label>
     <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password *">
     </fieldset>
 
@@ -44,8 +45,8 @@
         <span for="skill3">Bank Statement</span>
     </p>
     </fieldset>
-        <input id=add type="button" onclick="add_agent();" value="Add">
-        <input id=back type="button" onclick="location.href='/home';" value="Go Back to Home" /> 
+        <input id="add" type="button" onclick="add_agent();" value="Add">
+        <input id="back" type="button" onclick="location.href='/home';" value="Go Back to Home" /> 
     </form>
 </div>
 
@@ -77,7 +78,7 @@
         return;
     }
 
-    var password_pattern = /^.*(?=.{8,64})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/;
+    var password_pattern = /^.*(?=.{8,64})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*?_ ]).*$/;
     if(password_pattern.test(password) != true){
         alert("Please enter a valid password");
         return;

@@ -2,14 +2,15 @@
 
 <title>Update Agent Info</title>
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="formpage/formpage.css">
+<link rel="stylesheet" type="text/css" href="/css/formpage.css">
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <body>
     <div class="form-style-5">
         <form>
         <fieldset>
         <legend><span class="number">1</span> Agent Info</legend>
-        <label id="agent_id">Agend id: <%= agent_id %></label>
+        <label >Agend id:</label>
+        <label id="agent_id"><%= agent_id %></label>
         <input type="text" id="firstname" name="firstname" value="<%= agent.firstname %>">
         <input type="text" id="lastname" name="lastname" value="<%= agent.lastname %>">
         <input type="text" id="email" name="email" value="<%= agent.email %>">

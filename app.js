@@ -86,8 +86,10 @@ app.post('/login',function(req,res){
 　　　　username:'admin',
 　　　　password:'admin'
 　　}
+    console.log(req.body);
 　　if(req.body.username == user.username && req.body.password == user.password){
 　　　　req.session.user = user;
+        console.log("loging in success")
 　　　　res.send(200);
 　　}else{
 　　　　req.session.error = "Invalid Username or Password";
@@ -149,7 +151,7 @@ app.post('/add_agent',function(req,res){
             request(options, function (error, response) { 
             if (error) {
                 res.send(404);
-                throw new Error(error);
+                console.log(error);
             }
             if (response.statusCode == 200 && JSON.parse(response.body).success == true){
                 console.log(response.body);
@@ -214,7 +216,7 @@ app.get('/view_agents', function(req, res){
             if (error) {
                 console.log(error);
                 res.render('view_agents', {"agents": []});
-                throw new Error(error);
+                console.log(error);
             }
             // console.log(response.body);
             var body_data = JSON.parse(response.body);
@@ -251,7 +253,7 @@ app.get('/edit_agent/:id', function(req, res){
             if (error) {
                 console.log(error);
                 res.render('edit_agent',{"agent": agent_info = {}, "agent_id": req.params.id})
-                throw new Error(error);
+                console.log(error);
             }
             // console.log(response.body);
             var body_data = JSON.parse(response.body);
@@ -308,7 +310,7 @@ app.post('/edit_agent/:id', function(req,res){
         request(options, function (error, response) { 
             if (error) {
                 res.send(404);
-                throw new Error(error);
+                console.log(error);
             }
             console.log(response.body);
             if(response.statusCode == 200 && JSON.parse(response.body).success == true){
@@ -330,6 +332,7 @@ app.post('/edit_agent/:id', function(req,res){
 app.post('/delete_agent/:id', function(req, res){
     //call api to delete agent
     if(req.session.user){
+        console.log(req.body);
         agent_id = req.params.id
         console.log("deleting agent" + agent_id);
         var options = {
@@ -341,7 +344,7 @@ app.post('/delete_agent/:id', function(req, res){
             body: JSON.stringify({"userId":agent_id})  
         };
         request(options, function (error, response) { 
-            if (error) throw new Error(error);
+            if (error) console.log(error);
             console.log(response.body);
             if(response.statusCode == 200 && JSON.parse(response.body).success == true){
                 res.send(200);  

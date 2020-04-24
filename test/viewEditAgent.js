@@ -28,7 +28,7 @@ describe("View and edit agents", function() {
     describe('get valid edit agent page', function(){
         it('should return 200', function (done) {
           agent
-            .get('/edit_agent/5e7ac07a35c8367f99b8e19f')
+            .get('/edit_agent/5e78ad8dae2042244e431c5e')
             .end(function (err, res) {
               if (err) return done(err);
               res.status.should.be.equal(200);
@@ -53,10 +53,10 @@ describe("View and edit agents", function() {
 
     describe('update agent with valid information', function(){
         var agent_info = {
-            id:'5e7ac07a35c8367f99b8e19f',
-            firstname: "Apple",
-            lastname:"Wong",
-            email: "johnson@gmail.com",
+            id:'5e78ad8dae2042244e431c5e',
+            firstname: "Tony",
+            lastname:"Lian",
+            email: "asd@mymail.sutd.edu.sg",
             english: 1,
             chinese:1,
             malay:1,
@@ -66,7 +66,7 @@ describe("View and edit agents", function() {
         }
         it('add agent successfully and return 200', function (done) {
           agent
-            .post('/edit_agent/5e7ac07a35c8367f99b8e19f')
+            .post('/edit_agent/5e78ad8dae2042244e431c5e')
             .send(agent_info)
             .end(function (err, res) {
               if (err) return done(err);
