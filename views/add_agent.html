@@ -1,55 +1,53 @@
 <title>Add Agent</title>
 <meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="css/formpage.css">
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-<div style="height:1050px;width:550px;margin:50px auto;margin-left:auto;border:solid 1px;background: rgb(246, 246, 253);">
-　　<div style="margin-left: 45px;">
-    　　<h1>Adding agents</h1>
-        <h2>Agent information</h2>
-　　　　<form action="#" role="form" method="post">
-            <h4>Firstname</h4>
-            <input type="text" id="firstname" name="firstname" />
-            <h4>Lastname</h4>
-            <input type="text" id="lastname" name="lastname" />
-            <h4>Email address</h4>
-            <input type="text" id="email" name="email" onkeyup=""/>
-            <h4>Password</h4>
-            <p>Password length must be between 8 and 64 characters, contain at least 1 lowercase, 1 uppercase, 1 number and 1 special character</p>
-            <input type="password" id="password" name="password" />
-            <h4>Confirm password</h4>
-            <input type="password" id="confirm_password" name="confirm_password" />
-            <h4>Languages</h4>
-            <p>
-                <input type="checkbox" id="chinese">
-                <label for="chinese">Chinese</label>
-            </p>
-            <p>
-                <input type="checkbox" id="english">
-                <label for="english">English</label>
-            </p>
-            <p>
-                <input type="checkbox" id="malay">
-                <label for="malay">Malay</label>
-            </p>
-            <h4>Skills</h4>
-            <p>
-                <input type="checkbox" id="skill1">
-                <label for="skill1">Insurance</label>
-            </p>
-            <p>
-                <input type="checkbox" id="skill2">
-                <label for="skill2">Fraud</label>
-            </p>
-            <p>
-                <input type="checkbox" id="skill3">
-                <label for="skill3">Bank Statement</label>
-            </p>
-            <div style="margin-top:30px;margin-left:125px;">
-    　　　　　　 <input id=add type="button" onclick="add_agent();" value="Add">
-                <input id=back type="button" onclick="location.href='/home';" value="Go Back to Home" />  
-　　　　　　</div>
-        </form>
-　　</div>
+<div class="form-style-5">
+    <form>
+    <fieldset>
+    <legend><span class="number">1</span> Agent Info</legend>
+    <input type="text" id="firstname" name="firstname" placeholder="Firstname *">
+    <input type="text" id="lastname" name="lastname" placeholder="Lastname *">
+    <input type="text" id="email" name="email" placeholder="Email *">
+    <label >Password: 8-64 length, should have lower and uppercase, number and special character</label>
+    <input type="password" id="password" name="password" placeholder="Password *">
+    <label >Confirm Passpord</label>
+    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password *">
+    </fieldset>
+
+    <fieldset>
+    <legend><span class="number">2</span> Languages and Skilles</legend>
+    <label for="job">Languages</label>
+    <p>
+        <input type="checkbox" id="chinese">
+        <span for="chinese">Chinese</span>
+    </p>
+    <p>
+        <input type="checkbox" id="english">
+        <span for="english">English</span>
+    </p>
+    <p>
+        <input type="checkbox" id="malay">
+        <span for="malay">Malay</span>
+    </p>
+    <label for="job">Skills:</label>
+    <p>
+        <input type="checkbox" id="skill1">
+        <span for="skill1">Insurance</span>
+    </p>
+    <p>
+        <input type="checkbox" id="skill2">
+        <span for="skill2">Fraud</span>
+    </p>
+    <p>
+        <input type="checkbox" id="skill3">
+        <span for="skill3">Bank Statement</span>
+    </p>
+    </fieldset>
+        <input id="add" type="button" onclick="add_agent();" value="Add">
+        <input id="back" type="button" onclick="location.href='/home';" value="Go Back to Home" /> 
+    </form>
 </div>
 
 <script> function add_agent(){
@@ -80,7 +78,7 @@
         return;
     }
 
-    var password_pattern = /^.*(?=.{8,64})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/;
+    var password_pattern = /^.*(?=.{8,64})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*?_ ]).*$/;
     if(password_pattern.test(password) != true){
         alert("Please enter a valid password");
         return;

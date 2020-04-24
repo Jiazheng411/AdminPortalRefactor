@@ -44,7 +44,7 @@ describe("Add agent", function() {
             password: "Sutd@1234",
             firstname: "Apple",
             lastname:"Wong",
-            email: "abc@asd.email",
+            email: "apple_wong@sutd.edu.com",
             english: 1,
             chinese:1,
             malay:1,
